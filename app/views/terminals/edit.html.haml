@@ -16,6 +16,8 @@
       %tr.fields
         %td= menu_form.input :name
         %td= menu_form.input :price
+        %td= menu_form.label "Menu image" 
+        %td= menu_form.file_field :image
         %td= menu_form.input :veg, as: :boolean
         %td= menu_form.link_to_remove "Remove this task",data:{confirm: 'Are  you sure to delete?'}
   %br
