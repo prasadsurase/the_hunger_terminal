@@ -6,6 +6,11 @@
   %br
   = f.input :landline, placeholder: '022-12365987'
   %br
+  .form-group
+  = f.label :logo
+  %br/
+  = f.file_field :logo, class: "form-control"
+  %br
   %table#tasks
     = f.simple_fields_for :menu_items, :wrapper => false do |menu_form|
       %tr.fields
