@@ -4,11 +4,13 @@
     %tr
       %th Id
       %th Name
+      %th Logo
       %th Landline
     - @terminal.each do |object|
       %tr
       %td= object.id
       %td= object.name
+      %td= image_tag(object.logo.url(:thumb))
       %td= object.landline
       %td= link_to "Show", terminal_path(object.id)
       %td= link_to "Edit", edit_terminal_path(object.id)

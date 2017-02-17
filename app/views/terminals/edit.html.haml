@@ -6,6 +6,11 @@
   %br
   = f.input :landline
   %br
+  .field
+  = f.label :logo
+  %br/
+  = f.file_field :logo
+  %br
   %table
     = f.simple_fields_for :menu_items, :wrapper => false do |menu_form|
       %tr.fields

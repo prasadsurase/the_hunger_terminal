@@ -6,16 +6,17 @@
   %br
   = f.input :landline, placeholder: '022-12365987'
   %br
-  .form-group
+  .field
   = f.label :logo
   %br/
-  = f.file_field :logo, class: "form-control"
+  = f.file_field :logo
   %br
   %table#tasks
     = f.simple_fields_for :menu_items, :wrapper => false do |menu_form|
       %tr.fields
         %td= menu_form.input :name
         %td= menu_form.input :price
+        
         %td= menu_form.input :veg, as: :boolean
         %td= menu_form.link_to_remove "Remove menuitem"
   = f.link_to_add "Add a menuitem", :menu_items, "data-target" => "#tasks"

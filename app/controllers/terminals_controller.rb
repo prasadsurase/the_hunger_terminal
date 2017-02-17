@@ -28,6 +28,7 @@ class TerminalsController < ApplicationController
 
   def update
     @terminal = Terminal.find(params[:id])
+
     if @terminal.update_attributes(terminal_param)
       flash[:success] = "terminal updated"
       if @terminal.menu_items.empty?
@@ -59,7 +60,7 @@ class TerminalsController < ApplicationController
   private
 
   def terminal_param
-    params.require(:terminal).permit(:name,:landline, menu_items_attributes: [:id, :name, :veg, :price, :_destroy])
+    params.require(:terminal).permit(:name,:landline,:logo, menu_items_attributes: [:id, :name, :veg, :price, :image,:_destroy])
   end
 
   def download
