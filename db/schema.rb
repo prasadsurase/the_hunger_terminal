@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170308095604) do
+ActiveRecord::Schema.define(version: 20170308105827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20170308095604) do
     t.string   "landline"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float    "subsidy"
   end
 
   create_table "menu_items", force: :cascade do |t|
@@ -66,8 +67,9 @@ ActiveRecord::Schema.define(version: 20170308095604) do
     t.string   "role"
     t.string   "email"
     t.integer  "company_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "active",     default: true
     t.index ["company_id"], name: "index_users_on_company_id", using: :btree
   end
 
