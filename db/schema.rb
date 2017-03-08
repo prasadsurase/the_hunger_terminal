@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170308091705) do
+ActiveRecord::Schema.define(version: 20170308093413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,15 @@ ActiveRecord::Schema.define(version: 20170308091705) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["terminal_id"], name: "index_menu_items_on_terminal_id", using: :btree
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.datetime "date"
+    t.float    "total_cost"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
 
   create_table "terminals", force: :cascade do |t|
@@ -53,6 +62,7 @@ ActiveRecord::Schema.define(version: 20170308091705) do
   end
 
   add_foreign_key "menu_items", "terminals"
+  add_foreign_key "orders", "users"
   add_foreign_key "terminals", "companies"
   add_foreign_key "users", "companies"
 end
