@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170308090804) do
+ActiveRecord::Schema.define(version: 20170308091705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,25 @@ ActiveRecord::Schema.define(version: 20170308090804) do
     t.string   "landline"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "menu_items", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "veg"
+    t.float    "price"
+    t.integer  "terminal_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["terminal_id"], name: "index_menu_items_on_terminal_id", using: :btree
+  end
+
+  create_table "terminals", force: :cascade do |t|
+    t.string   "name"
+    t.string   "landline"
+    t.integer  "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_terminals_on_company_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -33,5 +52,7 @@ ActiveRecord::Schema.define(version: 20170308090804) do
     t.index ["company_id"], name: "index_users_on_company_id", using: :btree
   end
 
+  add_foreign_key "menu_items", "terminals"
+  add_foreign_key "terminals", "companies"
   add_foreign_key "users", "companies"
 end
