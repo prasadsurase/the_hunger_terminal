@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170308112934) do
+ActiveRecord::Schema.define(version: 20170308142418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,25 +30,28 @@ ActiveRecord::Schema.define(version: 20170308112934) do
     t.integer  "terminal_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "order_id"
+    t.index ["order_id"], name: "index_menu_items_on_order_id", using: :btree
     t.index ["terminal_id"], name: "index_menu_items_on_terminal_id", using: :btree
   end
 
-  create_table "order_details", force: :cascade do |t|
-    t.string   "menu_item_name"
-    t.float    "menu_item_price"
-    t.integer  "quantity"
-    t.integer  "order_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.index ["order_id"], name: "index_order_details_on_order_id", using: :btree
+  create_table "order_histories", force: :cascade do |t|
+    t.jsonb    "item_details", default: {}
+    t.datetime "date"
+    t.float    "total_cost"
+    t.integer  "user_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["user_id"], name: "index_order_histories_on_user_id", using: :btree
   end
 
   create_table "orders", force: :cascade do |t|
     t.datetime "date"
     t.float    "total_cost"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "is_placed",  default: false
     t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
 
@@ -75,7 +78,7 @@ ActiveRecord::Schema.define(version: 20170308112934) do
   end
 
   add_foreign_key "menu_items", "terminals"
-  add_foreign_key "order_details", "orders"
+  add_foreign_key "order_histories", "users"
   add_foreign_key "orders", "users"
   add_foreign_key "terminals", "companies"
   add_foreign_key "users", "companies"
