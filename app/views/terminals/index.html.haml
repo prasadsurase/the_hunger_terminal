@@ -3,18 +3,18 @@
     .col-md-12
       %h2 Terminals
       .pull-right
-        = link_to 'New Terminal', new_terminal_path
+        = link_to 'New Terminal', new_terminal_path, class: "btn btn-success"
       %table.table.table-bordered
         %thead
           %tr
             %th #
-            %th name
-            %th contact
-            %th email
-            %th tax
-            %th delivery_charge
-            %th min_delivery_amount
-            %th status
+            %th Name
+            %th Contact
+            %th Email
+            %th Tax
+            %th Delivery Charges 
+            %th Minimum Order Amount 
+            %th Status
             %th Actions
         %tbody
           - @terminals.each_with_index do |terminal, index|
