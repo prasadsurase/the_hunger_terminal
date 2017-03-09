@@ -22,10 +22,10 @@ menu_item5 = MenuItem.find_or_create_by(name: 'Stuffed garlic Bread', veg: true,
 menu_item6 = MenuItem.find_or_create_by(name: 'Margarita Pizza', veg: true, price: 90, terminal_id: terminal1.id)
 
 
-order = Order.find_or_create_by(date: Time.now, total_cost: 170, user_id: employee1.id, is_placed: true)
+order = Order.find_or_create_by(date: Time.now, total_cost: 170, user_id: employee1.id)
 order_detail1 = OrderDetail.find_or_create_by(menu_item_name: 'Pav Bhaji', veg: true, menu_item_price: 120, terminal_name: 'Indori Lal', terminal_id: terminal.id, quantity: 1, order_id: order.id)
 order_detail2 = OrderDetail.find_or_create_by(menu_item_name: 'Chicken Pizza', veg: false, menu_item_price: 100, terminal_name: 'Dominoes', terminal_id: terminal1.id, quantity: 1, order_id: order.id)
 
-order1 = Order.find_or_create_by(date: Time.now, total_cost: 280, user_id: employee2.id, is_placed: true)
+order1 = Order.find_or_create_by(date: Time.now, total_cost: 280, user_id: employee2.id)
 order_detail1 = OrderDetail.find_or_create_by(menu_item_name: 'Pav Bhaji', veg: true, menu_item_price: 120, terminal_name: 'Indori Lal', terminal_id: terminal.id, quantity: 2, order_id: order1.id)
 order_detail2 = OrderDetail.find_or_create_by(menu_item_name: 'Biryani', veg: true, menu_item_price: 90, terminal_name: 'Indori Lal', terminal_id: terminal.id, quantity: 1, order_id: order1.id)
