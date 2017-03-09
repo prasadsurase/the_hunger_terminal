@@ -1,4 +1,5 @@
 class CompaniesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:new, :create]
   def new
     @company = Company.new
     @company.users.build
@@ -8,8 +9,11 @@ class CompaniesController < ApplicationController
     @company = Company.new(company_params)
     if @company.save
       flash[:notice] = "User signed up Successfully"
+      sign_in @company.users.first
+      redirect_to company_users_path(@company)
     else
-      puts @company.errors.messages
+      flash[:alert] = "Error in creating user"
+      render 'new'
     end
   end
 
