@@ -17,7 +17,6 @@ class TerminalsController < ApplicationController
 
   def create
     @terminal = @current_company.terminals.build terminal_params
-    byebug
     if @terminal.save
       flash[:success] = "terminal created successfully"
       redirect_to terminals_path and return
