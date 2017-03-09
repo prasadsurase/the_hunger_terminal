@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170309073220) do
+ActiveRecord::Schema.define(version: 20170309075628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,12 +34,8 @@ ActiveRecord::Schema.define(version: 20170309073220) do
   end
 
   create_table "order_details", force: :cascade do |t|
-    t.jsonb    "item_details",    default: {}
-    t.datetime "date"
-    t.float    "total_cost"
-    t.integer  "user_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "menu_item_name"
     t.float    "menu_item_price"
     t.integer  "quantity"
@@ -49,7 +45,6 @@ ActiveRecord::Schema.define(version: 20170309073220) do
     t.integer  "order_id"
     t.index ["order_id"], name: "index_order_details_on_order_id", using: :btree
     t.index ["terminal_id"], name: "index_order_details_on_terminal_id", using: :btree
-    t.index ["user_id"], name: "index_order_details_on_user_id", using: :btree
   end
 
   create_table "orders", force: :cascade do |t|
@@ -85,7 +80,6 @@ ActiveRecord::Schema.define(version: 20170309073220) do
   end
 
   add_foreign_key "menu_items", "terminals"
-  add_foreign_key "order_details", "users"
   add_foreign_key "orders", "users"
   add_foreign_key "terminals", "companies"
   add_foreign_key "users", "companies"
