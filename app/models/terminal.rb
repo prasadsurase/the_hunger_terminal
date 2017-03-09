@@ -1,7 +1,7 @@
 class Terminal < ApplicationRecord
   has_many :ledgers
   belongs_to :company
-  has_many :menu_items, inverse_of: :terminal
+  has_many :menu_items, inverse_of: :terminal, dependent: :destroy
 
   accepts_nested_attributes_for :menu_items, allow_destroy: true, reject_if: :blank_menu
 
