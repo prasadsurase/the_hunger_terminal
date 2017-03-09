@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170309121803) do
+ActiveRecord::Schema.define(version: 20170309144213) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,19 @@ ActiveRecord::Schema.define(version: 20170309121803) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.float    "subsidy"
+  end
+
+  create_table "ledgers", force: :cascade do |t|
+    t.integer  "terminal_id"
+    t.date     "date"
+    t.integer  "orders_count"
+    t.float    "orders_amount"
+    t.float    "balance"
+    t.float    "discount"
+    t.string   "transaction_type"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["terminal_id"], name: "index_ledgers_on_terminal_id", using: :btree
   end
 
   create_table "menu_items", force: :cascade do |t|
@@ -95,6 +108,7 @@ ActiveRecord::Schema.define(version: 20170309121803) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "ledgers", "terminals"
   add_foreign_key "menu_items", "terminals"
   add_foreign_key "orders", "users"
   add_foreign_key "terminals", "companies"
