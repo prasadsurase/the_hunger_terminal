@@ -204,8 +204,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap-sass
   aasm
+  bootstrap-sass
   byebug
   coffee-rails (~> 4.2)
   database_cleaner (~> 1.5, >= 1.5.1)
@@ -228,6 +228,9 @@ DEPENDENCIES
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
+
+RUBY VERSION
+   ruby 2.3.0p0
 
 BUNDLED WITH
    1.13.7
