@@ -1,3 +1,4 @@
-class OrderHistory < ApplicationRecord
-  #belongs_to :order
+class OrderDetail < ApplicationRecord
+  belongs_to :order
+  belongs_to :terminal
 end
