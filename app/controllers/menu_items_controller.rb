@@ -16,6 +16,20 @@ class MenuItemsController < ApplicationController
     @menu_item = @terminal.menu_items.create(menu_items_params)
   end
 
+  def edit
+    render 'new'
+  end
+
+  def update
+    @menu_item.update_attributes(menu_items_params)
+    render 'create'
+  end
+
+  def destroy
+    @menu_item.destroy
+    redirect_to @terminal
+  end
+
   private
 
   def load_company
