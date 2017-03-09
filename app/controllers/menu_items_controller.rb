@@ -9,9 +9,11 @@ class MenuItemsController < ApplicationController
   end
 
   def new
+    @menu_item = @terminal.menu_items.new
   end
 
-  def edit
+  def create
+    @menu_item = @terminal.menu_items.create(menu_items_params)
   end
 
   private

@@ -2,11 +2,10 @@
 .container
   .row
     .col-md-12
-      %h2 Terminal Details
-    .col-md-12
       %h2 Menu Items
       .pull-right
-        = link_to 'New Menu Item', new_terminal_menu_item_path(@terminal)
+        = link_to 'New Menu Item', new_terminal_menu_item_path(@terminal), class: "btn btn-success", remote: true 
+    .col-md-12    
       %table.table.table-bordered
         %thead
           %tr
@@ -28,4 +27,4 @@
                 = link_to 'Delete', terminal_menu_item_path(@terminal, menu_item), method: :delete, data: { confirm: 'Are you sure?' }
       =# paginate @menu_items
 
-
+#menu_item.modal.fade{"aria-labelledby" => "Menu Item", :role => "dialog", :tabindex => "-1"}
