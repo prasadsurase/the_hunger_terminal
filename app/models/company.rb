@@ -1,4 +1,5 @@
 class Company < ApplicationRecord
   has_many :users
   has_many :terminals
+  accepts_nested_attributes_for :users
 end
