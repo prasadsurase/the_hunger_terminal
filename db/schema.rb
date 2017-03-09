@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20170309170649) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.boolean  "active",           default: true
+    t.float    "balance",          default: 0.0
     t.string   "logo"
     t.float    "tax",              default: 0.0
     t.string   "email"

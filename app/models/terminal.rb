@@ -1,7 +1,9 @@
 class Terminal < ApplicationRecord
   has_many :ledgers
+  has_many :order_details
+  has_many :menu_items, inverse_of: :terminal
+  
   belongs_to :company
-  has_many :menu_items, inverse_of: :terminal, dependent: :destroy
 
   accepts_nested_attributes_for :menu_items, allow_destroy: true, reject_if: :blank_menu
 
@@ -10,7 +12,8 @@ class Terminal < ApplicationRecord
   validates :tax, numericality: { greater_than_or_equal_to: 0, less_than: 100 }
   validates :delivery_charges, numericality: { greater_than_or_equal_to: 0 }
   validates :minimum_delivery, numericality: { greater_than_or_equal_to: 0 }
-  validates :email, allow_blank: true, uniqueness: { scope: :company_id }, format: { with: Devise.email_regexp, message: "Invalid email format"}
+  validates :email, allow_blank: true, uniqueness: { scope: :company_id }, 
+    format: { with: Devise.email_regexp, message: "Invalid email format"}
 
   private
 
