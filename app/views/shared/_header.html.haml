@@ -6,4 +6,6 @@
       = link_to  "Login", new_user_session_path, class: 'btn btn-default navbar-btn pull-right nav-buttons'
       = link_to  "Signup", new_company_path, class: 'btn btn-default navbar-btn pull-right nav-buttons'
     - else
+      %ul.nav.navbar-nav
+        %li= link_to 'Terminals', terminals_path
       = link_to  "Logout", destroy_user_session_path, method: :delete, class: 'btn btn-default navbar-btn pull-right nav-buttons'
